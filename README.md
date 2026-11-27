@@ -1,5 +1,7 @@
 # Contatos de emergência: plugin do Plantão365
 
+[![ci](https://github.com/plantao365/plugin-emergency-contacts/actions/workflows/ci.yml/badge.svg)](https://github.com/plantao365/plugin-emergency-contacts/actions/workflows/ci.yml)
+
 Quem acionar em incidente, por equipe. É também o **plugin de referência** do kernel do [Plantão365](https://github.com/plantao365/app): use como ponto de partida para o seu.
 
 ## O que ele faz
@@ -21,12 +23,14 @@ Quem acionar em incidente, por equipe. É também o **plugin de referência** do
 
 Cada instância só aceita pacotes assinados por uma chave que ela confia (`PLUGIN_PUBLIC_KEYS`).
 
+Baixe o `.p365` (sem assinatura) do [último release](https://github.com/plantao365/plugin-emergency-contacts/releases/latest) ou gere com `npm run build`. Troque `<versão>` abaixo pela versão do arquivo.
+
 ```sh
 npm ci
-npm run build                                    # gera emergency-contacts-1.0.0.p365
+npm run build                                    # dispensável se baixou o .p365 do release
 npx plantao-plugin keygen --out ~/.plantao365    # uma vez; imprime a chave pública
-npx plantao-plugin sign emergency-contacts-1.0.0.p365 --key ~/.plantao365/plugin-signing.pem
-npx plantao-plugin install emergency-contacts-1.0.0.p365 --url https://plantao.exemplo --token "$PLANTAO365_PLUGIN_TOKEN"
+npx plantao-plugin sign emergency-contacts-<versão>.p365 --key ~/.plantao365/plugin-signing.pem
+npx plantao-plugin install emergency-contacts-<versão>.p365 --url https://plantao.exemplo --token "$PLANTAO365_PLUGIN_TOKEN"
 ```
 
 Na API da instância, defina `PLUGIN_PUBLIC_KEYS` (chave impressa pelo `keygen`) e `PLUGIN_INSTALL_TOKEN`. Depois do install, habilite o plugin em **Gestão › Plugins** com a master key.
@@ -47,7 +51,7 @@ Na API da instância, defina `PLUGIN_PUBLIC_KEYS` (chave impressa pelo `keygen`)
 
 O `plugin-sdk` (contrato, lint de estilo e CLI `plantao-plugin`) e o `web-sdk` (componentes e tokens) estão em `vendor/` como `.tgz`. Quando o Plantão365 publicar os dois no GitHub Packages, troque as dependências `file:vendor/...` pela versão publicada.
 
-Guia completo do autor: [docs/plugins.md](https://github.com/plantao365/app/blob/feat/microkernel-plugins/docs/plugins.md).
+Guia completo do autor: [Plugins: guia do autor](https://github.com/plantao365/app/wiki/Plugins-Guia-do-Autor).
 
 ## Desenvolvimento
 
@@ -56,6 +60,8 @@ npm run typecheck
 npm test
 npm run build
 ```
+
+Fluxo, convenção de commits e release automático: [CONTRIBUTING](CONTRIBUTING.md). Versões publicadas: [releases](https://github.com/plantao365/plugin-emergency-contacts/releases).
 
 ## Licença
 
