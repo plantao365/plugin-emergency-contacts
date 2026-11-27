@@ -1,4 +1,4 @@
-import { definePlugin, type PluginEnv } from '@diovanibmotta/plantao365-plugin-sdk';
+import { definePlugin, type PluginEnv } from '@plantao365/plugin-sdk';
 import type { Context } from 'hono';
 import {
   deleteContact,

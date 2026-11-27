@@ -6,7 +6,7 @@ import {
   FormActions,
   FormPage,
   FormSection,
-} from '@diovanibmotta/plantao365-web-sdk';
+} from '@plantao365/web-sdk';
 import {
   apiPath,
   CONTACTS_PATH,

@@ -9,7 +9,7 @@ import {
   PluginPage,
   usePagination,
   useRole,
-} from '@diovanibmotta/plantao365-web-sdk';
+} from '@plantao365/web-sdk';
 import { apiPath, CONTACTS_NEW_PATH, contactPath, type Contact } from './types';
 
 /** Listagem dos contatos da equipe ativa; gestor cria e edita, os demais só consultam. */
