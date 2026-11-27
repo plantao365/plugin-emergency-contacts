@@ -1,4 +1,4 @@
-import { definePluginWeb } from '@diovanibmotta/plantao365-web-sdk';
+import { definePluginWeb } from '@plantao365/web-sdk';
 import { ContactForm } from './ContactForm';
 import { ContactsList } from './ContactsList';
 import { ProfileContacts } from './ProfileContacts';

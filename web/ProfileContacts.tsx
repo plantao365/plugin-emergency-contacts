@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { api, FormSection } from '@diovanibmotta/plantao365-web-sdk';
+import { api, FormSection } from '@plantao365/web-sdk';
 import { apiPath, type Contact } from './types';
 
 /** Slot `profile.sections`: os contatos da equipe ativa, só leitura. */

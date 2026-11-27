@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router';
-import { registerWebSdk, type Role } from '@diovanibmotta/plantao365-web-sdk';
+import { registerWebSdk, type Role } from '@plantao365/web-sdk';
 import { ContactForm } from './ContactForm';
 import { ContactsList } from './ContactsList';
 import { ProfileContacts } from './ProfileContacts';

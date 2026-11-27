@@ -1,4 +1,4 @@
-import { pluginApi } from '@diovanibmotta/plantao365-web-sdk';
+import { pluginApi } from '@plantao365/web-sdk';
 
 export const PLUGIN_ID = 'emergency-contacts';
 export const apiPath = pluginApi(PLUGIN_ID);

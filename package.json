@@ -1,5 +1,5 @@
 {
-  "name": "plantao365-plugin-emergency-contacts",
+  "name": "plugin-emergency-contacts",
   "private": true,
   "version": "1.0.0",
   "description": "Plugin do Plantão365: contatos de emergência por equipe (exemplo de referência)",
@@ -14,8 +14,8 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@diovanibmotta/plantao365-plugin-sdk": "file:vendor/diovanibmotta-plantao365-plugin-sdk-1.30.0.tgz",
-    "@diovanibmotta/plantao365-web-sdk": "file:vendor/diovanibmotta-plantao365-web-sdk-1.30.0.tgz",
+    "@plantao365/plugin-sdk": "file:vendor/plantao365-plugin-sdk-1.30.0.tgz",
+    "@plantao365/web-sdk": "file:vendor/plantao365-web-sdk-1.30.0.tgz",
     "@module-federation/vite": "1.23.11",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/react": "^16.3.3",

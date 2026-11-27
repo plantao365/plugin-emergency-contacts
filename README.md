@@ -1,6 +1,6 @@
 # Contatos de emergência: plugin do Plantão365
 
-Quem acionar em incidente, por equipe. É também o **plugin de referência** do kernel do [Plantão365](https://github.com/diovanibmotta/plantao365): use como ponto de partida para o seu.
+Quem acionar em incidente, por equipe. É também o **plugin de referência** do kernel do [Plantão365](https://github.com/plantao365/app): use como ponto de partida para o seu.
 
 ## O que ele faz
 
@@ -47,7 +47,7 @@ Na API da instância, defina `PLUGIN_PUBLIC_KEYS` (chave impressa pelo `keygen`)
 
 O `plugin-sdk` (contrato, lint de estilo e CLI `plantao-plugin`) e o `web-sdk` (componentes e tokens) estão em `vendor/` como `.tgz`. Quando o Plantão365 publicar os dois no GitHub Packages, troque as dependências `file:vendor/...` pela versão publicada.
 
-Guia completo do autor: [docs/plugins.md](https://github.com/diovanibmotta/plantao365/blob/feat/microkernel-plugins/docs/plugins.md).
+Guia completo do autor: [docs/plugins.md](https://github.com/plantao365/app/blob/feat/microkernel-plugins/docs/plugins.md).
 
 ## Desenvolvimento
 

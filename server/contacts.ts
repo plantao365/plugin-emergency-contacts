@@ -1,4 +1,4 @@
-import type { PluginTx } from '@diovanibmotta/plantao365-plugin-sdk';
+import type { PluginTx } from '@plantao365/plugin-sdk';
 
 /*
  * Regras e SQL dos contatos. As queries usam nomes sem schema: rodam em `ctx.withSchema`, que
