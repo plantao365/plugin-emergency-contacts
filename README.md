@@ -25,6 +25,13 @@ Cada instância só aceita pacotes assinados por uma chave que ela confia (`PLUG
 
 Baixe o `.p365` (sem assinatura) do [último release](https://github.com/plantao365/plugin-emergency-contacts/releases/latest) ou gere com `npm run build`. Troque `<versão>` abaixo pela versão do arquivo.
 
+O mesmo arquivo também está no [GitHub Packages](https://github.com/plantao365/plugin-emergency-contacts/pkgs/npm/plugin-emergency-contacts). O registro exige um token com `read:packages` no `~/.npmrc` (`//npm.pkg.github.com/:_authToken=SEU_TOKEN`):
+
+```sh
+npm pack @plantao365/plugin-emergency-contacts --@plantao365:registry=https://npm.pkg.github.com
+tar -xzf plantao365-plugin-emergency-contacts-<versão>.tgz --strip-components=1 package/emergency-contacts-<versão>.p365
+```
+
 ```sh
 npm ci
 npm run build                                    # dispensável se baixou o .p365 do release

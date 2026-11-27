@@ -51,7 +51,10 @@ A cada push em `main`, o workflow [ci](.github/workflows/ci.yml) valida (tipos, 
 
 1. grava a nova versão em `package.json` e `plantao365.plugin.json`;
 2. atualiza o `CHANGELOG.md` e gera o `.p365`;
-3. cria a tag `vX.Y.Z` e publica o GitHub Release com o pacote anexado (**sem assinatura**: cada instância assina com a própria chave).
+3. publica o `.p365` no GitHub Packages, como `@plantao365/plugin-emergency-contacts`;
+4. cria a tag `vX.Y.Z` e publica o GitHub Release com o mesmo arquivo anexado.
+
+O pacote sai **sem assinatura**: cada instância assina com a própria chave.
 
 Não edite a versão, o `CHANGELOG.md` nem os commits `🔖 chore(release)` à mão. Mudou a faixa de `kernelApi` no manifesto de forma incompatível? Use 💥.
 

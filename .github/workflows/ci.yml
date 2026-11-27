@@ -31,6 +31,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      packages: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -45,3 +46,5 @@ jobs:
         env:
           # RELEASE_TOKEN só é necessário se um ruleset passar a proteger a main
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          # publica no GitHub Packages; usa sempre o token do workflow (packages: write)
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
