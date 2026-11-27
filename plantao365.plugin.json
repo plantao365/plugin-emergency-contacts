@@ -1,0 +1,26 @@
+{
+  "id": "emergency-contacts",
+  "name": "Contatos de emergência",
+  "version": "1.0.0",
+  "description": "Quem acionar em incidente, por equipe. Plugin de referência do kernel.",
+  "kernelApi": "^1.1.0",
+  "guestReadPaths": ["/contacts"],
+  "settingsSchema": {
+    "type": "object",
+    "properties": {
+      "reviewDays": {
+        "type": "integer",
+        "title": "Revisar contatos a cada (dias)",
+        "description": "Depois desse prazo sem edição, o contato aparece como \"revisar\".",
+        "minimum": 30,
+        "maximum": 730,
+        "default": 180
+      },
+      "welcomeEmail": {
+        "type": "boolean",
+        "title": "Enviar os contatos a quem entra na equipe",
+        "default": true
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+node_modules
+dist
+# Pacotes, assinaturas e chaves geradas pela CLI: nunca versione a chave privada.
+*.p365
+*.p365.sig
+*.pem
+.env
+.env.*

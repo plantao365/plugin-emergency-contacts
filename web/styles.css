@@ -1,0 +1,28 @@
+/* Escopo .plg-emergency-contacts (o host aplica no container); só tokens semânticos. */
+.plg-emergency-contacts .ec-review {
+  margin-left: calc(var(--space) / 2);
+  padding: 0 calc(var(--space) / 2);
+  border: 1px solid var(--warning);
+  border-radius: var(--radius-sm);
+  color: var(--warning);
+  font-size: 0.8em;
+}
+
+.plg-emergency-contacts .ec-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plg-emergency-contacts .ec-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space) / 2);
+  padding-block: calc(var(--space) / 2);
+  border-bottom: 1px solid var(--border);
+}
+
+.plg-emergency-contacts .ec-phone {
+  margin-left: auto;
+  font-family: var(--mono);
+}
