@@ -9,8 +9,8 @@ Quem acionar em incidente, por equipe. É também o **plugin de referência** do
 - Tela **Contatos** no menu, com listagem e formulário (gestor cria, edita e exclui; membro e convidado consultam).
 - Seção "Contatos de emergência" no Perfil (slot `profile.sections`).
 - E-mail com os contatos para quem entra na equipe (evento `team.member_added`).
-- Job que marca para revisão os contatos sem edição no prazo configurado.
-- Configuração em **Gestão › Plugins**: prazo de revisão em dias e envio do e-mail.
+- Marca para revisão os contatos sem edição no prazo configurado: na ativação do plugin e, depois, a cada 6 horas.
+- Ajustes em **Configuração › Plugins** (gestor): prazo de revisão em dias e envio do e-mail.
 
 ## Requisitos
 
@@ -40,7 +40,7 @@ npx plantao-plugin sign emergency-contacts-<versão>.p365 --key ~/.plantao365/pl
 npx plantao-plugin install emergency-contacts-<versão>.p365 --url https://plantao.exemplo --token "$PLANTAO365_PLUGIN_TOKEN"
 ```
 
-Na API da instância, defina `PLUGIN_PUBLIC_KEYS` (chave impressa pelo `keygen`) e `PLUGIN_INSTALL_TOKEN`. Depois do install, habilite o plugin em **Gestão › Plugins** com a master key.
+Na API da instância, defina `PLUGIN_PUBLIC_KEYS` (chave impressa pelo `keygen`) e `PLUGIN_INSTALL_TOKEN`. Depois do install, um gestor habilita o plugin em **Configuração › Plugins**.
 
 ## Estrutura
 
