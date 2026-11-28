@@ -1,7 +1,7 @@
 {
   "id": "emergency-contacts",
   "name": "Contatos de emergência",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Quem acionar em incidente, por equipe. Plugin de referência do kernel.",
   "kernelApi": "^1.1.0",
   "guestReadPaths": ["/contacts"],

@@ -1,3 +1,8 @@
+# [v1.1.0](https://github.com/plantao365/plugin-emergency-contacts/compare/v1.0.1...v1.1.0) (2026-11-28)
+
+## ✨ New Features
+- [`2ac378d`](https://github.com/plantao365/plugin-emergency-contacts/commit/2ac378d)  feat(release): publica o pacote assinado
+
 # [v1.0.1](https://github.com/plantao365/plugin-emergency-contacts/compare/v1.0.0...v1.0.1) (2026-11-28)
 
 ## 🐛 Bug Fixes
