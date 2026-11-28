@@ -42,6 +42,17 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Falha antes do semantic-release: release publicado sem assinatura não se conserta.
+      - name: Grava a chave de assinatura
+        env:
+          PLUGIN_SIGNING_KEY: ${{ secrets.PLUGIN_SIGNING_KEY }}
+        run: |
+          if [ -z "$PLUGIN_SIGNING_KEY" ]; then
+            echo "::error::secret PLUGIN_SIGNING_KEY não configurado (ver CONTRIBUTING)"
+            exit 1
+          fi
+          umask 077
+          printf '%s\n' "$PLUGIN_SIGNING_KEY" > "$RUNNER_TEMP/plugin-signing.pem"
       - run: npx semantic-release
         env:
           # RELEASE_TOKEN só é necessário se um ruleset passar a proteger a main

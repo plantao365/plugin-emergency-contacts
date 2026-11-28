@@ -50,11 +50,20 @@ Exemplos:
 A cada push em `main`, o workflow [ci](.github/workflows/ci.yml) valida (tipos, testes, build) e roda o semantic-release, que:
 
 1. grava a nova versão em `package.json` e `plantao365.plugin.json`;
-2. atualiza o `CHANGELOG.md` e gera o `.p365`;
-3. publica o `.p365` no GitHub Packages, como `@plantao365/plugin-emergency-contacts`;
-4. cria a tag `vX.Y.Z` e publica o GitHub Release com o mesmo arquivo anexado.
+2. atualiza o `CHANGELOG.md`, gera o `.p365` e o assina (`.p365.sig`);
+3. publica os dois no GitHub Packages, como `@plantao365/plugin-emergency-contacts`;
+4. cria a tag `vX.Y.Z` e publica o GitHub Release com os mesmos arquivos anexados.
 
-O pacote sai **sem assinatura**: cada instância assina com a própria chave.
+### Chave de assinatura
+
+O release usa o secret `PLUGIN_SIGNING_KEY` do repositório (chave privada Ed25519 em PEM); sem ele o job falha antes de publicar. Para criar ou trocar:
+
+```sh
+npx plantao-plugin keygen --out ~/.plantao365-publisher   # imprime a chave pública
+gh secret set PLUGIN_SIGNING_KEY --repo plantao365/plugin-emergency-contacts < ~/.plantao365-publisher/plugin-signing.pem
+```
+
+Guarde a chave privada em um cofre e divulgue a pública: é ela que cada instância cadastra. Rodar o `keygen` na mesma pasta sobrescreve a chave, e trocá-la obriga as instâncias a cadastrar a nova.
 
 Não edite a versão, o `CHANGELOG.md` nem os commits `🔖 chore(release)` à mão. Mudou a faixa de `kernelApi` no manifesto de forma incompatível? Use 💥.
 

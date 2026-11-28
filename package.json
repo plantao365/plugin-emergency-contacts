@@ -9,7 +9,8 @@
     "url": "git+https://github.com/plantao365/plugin-emergency-contacts.git"
   },
   "files": [
-    "*.p365"
+    "*.p365",
+    "*.p365.sig"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

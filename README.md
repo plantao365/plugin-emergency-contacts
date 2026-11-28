@@ -21,26 +21,27 @@ Quem acionar em incidente, por equipe. É também o **plugin de referência** do
 
 ## Instalar na sua instância
 
-Cada instância só aceita pacotes assinados por uma chave que ela confia (`PLUGIN_PUBLIC_KEYS`).
+Cada instância só aceita pacotes assinados por uma chave que ela confia. Antes de instalar, cadastre a chave pública do publicador em **Configuração › Plugins › Chaves** (ou em `PLUGIN_PUBLIC_KEYS`).
 
-Baixe o `.p365` (sem assinatura) do [último release](https://github.com/plantao365/plugin-emergency-contacts/releases/latest) ou gere com `npm run build`. Troque `<versão>` abaixo pela versão do arquivo.
+Baixe o `.p365` e o `.p365.sig` do [último release](https://github.com/plantao365/plugin-emergency-contacts/releases/latest) e envie os dois em **Instalados › Instalar de arquivo**. Troque `<versão>` abaixo pela versão do arquivo.
 
-O mesmo arquivo também está no [GitHub Packages](https://github.com/plantao365/plugin-emergency-contacts/pkgs/npm/plugin-emergency-contacts). O registro exige um token com `read:packages` no `~/.npmrc` (`//npm.pkg.github.com/:_authToken=SEU_TOKEN`):
+Os mesmos arquivos também estão no [GitHub Packages](https://github.com/plantao365/plugin-emergency-contacts/pkgs/npm/plugin-emergency-contacts). O registro exige um token com `read:packages` no `~/.npmrc` (`//npm.pkg.github.com/:_authToken=SEU_TOKEN`):
 
 ```sh
 npm pack @plantao365/plugin-emergency-contacts --@plantao365:registry=https://npm.pkg.github.com
-tar -xzf plantao365-plugin-emergency-contacts-<versão>.tgz --strip-components=1 package/emergency-contacts-<versão>.p365
+tar -xzf plantao365-plugin-emergency-contacts-<versão>.tgz --strip-components=1 package/emergency-contacts-<versão>.p365 package/emergency-contacts-<versão>.p365.sig
 ```
+
+Pela linha de comando, com o `.sig` ao lado do pacote e `PLUGIN_INSTALL_TOKEN` definido na API:
 
 ```sh
 npm ci
-npm run build                                    # dispensável se baixou o .p365 do release
-npx plantao-plugin keygen --out ~/.plantao365    # uma vez; imprime a chave pública
-npx plantao-plugin sign emergency-contacts-<versão>.p365 --key ~/.plantao365/plugin-signing.pem
 npx plantao-plugin install emergency-contacts-<versão>.p365 --url https://plantao.exemplo --token "$PLANTAO365_PLUGIN_TOKEN"
 ```
 
-Na API da instância, defina `PLUGIN_PUBLIC_KEYS` (chave impressa pelo `keygen`) e `PLUGIN_INSTALL_TOKEN`. Depois do install, um gestor habilita o plugin em **Configuração › Plugins**.
+Compilando por conta própria (`npm run build`), assine com a sua chave: `keygen --out ~/.plantao365` (uma vez; imprime a chave pública a cadastrar) e `sign <arquivo>.p365 --key ~/.plantao365/plugin-signing.pem`.
+
+Depois do install, um gestor habilita o plugin em **Configuração › Plugins**.
 
 ## Estrutura
 
