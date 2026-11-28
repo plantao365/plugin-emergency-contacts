@@ -14,7 +14,8 @@ export interface Contact {
   name: string;
   phone: string;
   role: string;
-  notes: string;
+  /** A listagem só traz o campo para o gestor. */
+  notes?: string;
   needsReview: boolean;
   reviewedAt: string;
   updatedAt: string;

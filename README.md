@@ -6,7 +6,7 @@ Quem acionar em incidente, por equipe. É também o **plugin de referência** do
 
 ## O que ele faz
 
-- Tela **Contatos** no menu, com listagem e formulário (gestor cria, edita e exclui; membro e convidado consultam).
+- Tela **Contatos** no menu, com listagem e formulário (gestor cria, edita e exclui; membro e convidado consultam, sem as observações).
 - Seção "Contatos de emergência" no Perfil (slot `profile.sections`).
 - E-mail com os contatos para quem entra na equipe (evento `team.member_added`).
 - Marca para revisão os contatos sem edição no prazo configurado: na ativação do plugin e, depois, a cada 6 horas.

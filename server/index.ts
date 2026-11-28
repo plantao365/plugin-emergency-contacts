@@ -41,7 +41,10 @@ export default definePlugin({
     router.get('/contacts', auth.requireAuth(), async (c) => {
       const teamId = teamOf(c);
       if (!teamId) return noTeam(c);
-      return c.json({ contacts: await ctx.withSchema((tx) => listContacts(tx, teamId)) });
+      const contacts = await ctx.withSchema((tx) => listContacts(tx, teamId));
+      // Observações são só do gestor: membro e convidado não recebem o campo.
+      if (c.get('user')!.role === 'manager') return c.json({ contacts });
+      return c.json({ contacts: contacts.map(({ notes: _, ...contact }) => contact) });
     });
 
     router.get('/contacts/:id', auth.requireRole('manager'), async (c) => {
