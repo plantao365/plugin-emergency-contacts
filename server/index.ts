@@ -20,10 +20,11 @@ const REVIEW_JOB_INTERVAL_MS = 6 * 60 * 60 * 1000;
 
 /**
  * Contatos de emergência por equipe: CRUD em /api/extensions/emergency-contacts/contacts,
- * e-mail com os contatos a quem entra na equipe e job que marca contatos para revisão.
+ * e-mail com os contatos a quem entra na equipe e marcação de contatos a revisar (na ativação
+ * e por job).
  */
 export default definePlugin({
-  setup(ctx) {
+  async setup(ctx) {
     const reviewDays = Number(ctx.settings.reviewDays ?? 180);
     const welcomeEmail = ctx.settings.welcomeEmail !== false;
     const { router, auth } = ctx;
@@ -146,13 +147,12 @@ export default definePlugin({
       });
     });
 
-    ctx.jobs.register({
-      name: 'review',
-      intervalMs: REVIEW_JOB_INTERVAL_MS,
-      run: async () => {
-        const marked = await ctx.withSchema((tx) => markForReview(tx, reviewDays));
-        if (marked > 0) ctx.logger.info({ marked }, 'Contatos marcados para revisão');
-      },
-    });
+    const review = async () => {
+      const marked = await ctx.withSchema((tx) => markForReview(tx, reviewDays));
+      if (marked > 0) ctx.logger.info({ marked }, 'Contatos marcados para revisão');
+    };
+    ctx.jobs.register({ name: 'review', intervalMs: REVIEW_JOB_INTERVAL_MS, run: review });
+    // O kernel só roda o job depois do primeiro intervalo, e cada reinício recomeça a contagem.
+    await review();
   },
 });
