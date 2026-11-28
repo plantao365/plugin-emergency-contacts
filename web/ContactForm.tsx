@@ -40,7 +40,7 @@ export function ContactForm() {
     api
       .get<{ contact: Contact }>(apiPath(`/contacts/${id}`), controller.signal)
       .then(({ contact: c }) =>
-        setValues({ name: c.name, phone: c.phone, role: c.role, notes: c.notes }),
+        setValues({ name: c.name, phone: c.phone, role: c.role, notes: c.notes ?? '' }),
       )
       .catch((err: unknown) => {
         if (controller.signal.aborted) return;

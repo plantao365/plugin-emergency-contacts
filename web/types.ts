@@ -14,7 +14,8 @@ export interface Contact {
   name: string;
   phone: string;
   role: string;
-  notes: string;
+  /** A listagem só traz o campo para o gestor. */
+  notes?: string;
   needsReview: boolean;
   reviewedAt: string;
   updatedAt: string;
@@ -31,7 +32,8 @@ export const EMPTY_CONTACT: ContactValues = { name: '', phone: '', role: '', not
 
 export type ContactErrors = Partial<Record<keyof ContactValues, string>>;
 
-const PHONE = /^\+?[0-9 ()-]{8,20}$/;
+const isPhone = (phone: string) =>
+  /^\+?[0-9 ()-]{1,40}$/.test(phone) && /^(\D*\d){8,20}\D*$/.test(phone);
 
 /** Mesmas regras da API (server/contacts.ts). */
 export function validateContact(v: ContactValues): ContactErrors {
@@ -39,7 +41,7 @@ export function validateContact(v: ContactValues): ContactErrors {
   if (!v.name.trim()) errors.name = 'Informe o nome.';
   else if (v.name.trim().length > 100) errors.name = 'Use no máximo 100 caracteres.';
   if (!v.phone.trim()) errors.phone = 'Informe o telefone.';
-  else if (!PHONE.test(v.phone.trim())) errors.phone = 'Use de 8 a 20 dígitos.';
+  else if (!isPhone(v.phone.trim())) errors.phone = 'Use de 8 a 20 dígitos.';
   if (v.role.trim().length > 60) errors.role = 'Use no máximo 60 caracteres.';
   if (v.notes.trim().length > 500) errors.notes = 'Use no máximo 500 caracteres.';
   return errors;

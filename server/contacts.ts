@@ -44,9 +44,12 @@ const toContact = (r: Row): Contact => ({
   updatedAt: r.updated_at.toISOString(),
 });
 
-export const PHONE = /^\+?[0-9 ()-]{8,20}$/;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export const isId = (id: string) => UUID.test(id);
+
+/** Dígitos e separadores (até 40 caracteres), com 8 a 20 dígitos. */
+export const isPhone = (phone: string) =>
+  /^\+?[0-9 ()-]{1,40}$/.test(phone) && /^(\D*\d){8,20}\D*$/.test(phone);
 
 /** Valida o corpo do POST/PUT; mesmas regras do formulário. */
 export function parseContact(body: unknown): { value: ContactInput | null; errors: string[] } {
@@ -62,7 +65,7 @@ export function parseContact(body: unknown): { value: ContactInput | null; error
   if (!value.name) errors.push('Nome: obrigatório.');
   else if (value.name.length > 100) errors.push('Nome: no máximo 100 caracteres.');
   if (!value.phone) errors.push('Telefone: obrigatório.');
-  else if (!PHONE.test(value.phone)) errors.push('Telefone: use de 8 a 20 dígitos.');
+  else if (!isPhone(value.phone)) errors.push('Telefone: use de 8 a 20 dígitos.');
   if (value.role.length > 60) errors.push('Função: no máximo 60 caracteres.');
   if (value.notes.length > 500) errors.push('Observações: no máximo 500 caracteres.');
   return { value: errors.length ? null : value, errors };
@@ -102,7 +105,7 @@ export async function deleteContact(tx: PluginTx, teamId: string, id: string) {
   return rows.length > 0;
 }
 
-/** Job: marca para revisão os contatos sem edição há mais de `days` dias. */
+/** Ativação e job: marca para revisão os contatos sem edição há mais de `days` dias. */
 export async function markForReview(tx: PluginTx, days: number): Promise<number> {
   const rows = await tx`
     update contacts set needs_review = true
